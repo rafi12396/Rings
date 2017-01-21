@@ -1,0 +1,15 @@
+package gam;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+public class MainPanelClass extends JPanel{
+
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		Rings.ring.mainGraphics((Graphics2D)g);
+	}
+}
