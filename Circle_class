@@ -1,0 +1,50 @@
+package gam;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Random;
+
+
+public class Circle {
+
+	int x,y,cHeight=140,cWidth=40,speed=5;
+	Random rand;
+	public Circle(Rings ring, int i){
+		x=ring.WIDTH+(3-i)*200;
+		rand=new Random();
+		y=50+rand.nextInt(300);
+	}
+	
+	
+	public void drawCircle(Graphics2D g) {
+		g.setColor(Color.GREEN.darker());
+		g.setStroke(new BasicStroke(10));
+		g.drawOval(x, y, cWidth, cHeight);
+	}
+
+
+	public void update(Ball ball, Rings rings) {
+		// TODO Auto-generated method stub
+		this.x-=speed;
+		
+		if(ball.x==this.x)
+		{
+			if(ball.y+ball.bHeight<this.y+this.cHeight && ball.y>this.y)
+			{
+				ball.score=ball.score+1;
+			}
+			
+			else
+			{
+				rings.gameStatus=2;
+				this.speed=8;
+			}
+			
+			this.speed+=((ball.score)/5+1);
+		}
+	}
+
+}
